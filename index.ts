@@ -75,8 +75,8 @@ printMessage("Hello World");
     throw new Error(err);
 
  }
-const err = throwError("Error boy");
-console.log(err);
+// const err = throwError("Error boy");
+// console.log(err);
 
 /**
  * Arrays Types
@@ -85,3 +85,30 @@ console.log(err);
 const nums: number[] = [1,2,3,4,5];
 // Other notation
 const names: Array<string> = ["Joshua", "John Doe"];
+
+
+/**
+ * Multi Dimenstional Array
+ */
+const numbers: number[][] = [
+    [
+        1,2,3
+    ],
+    [
+        4,5,6
+    ]
+];
+
+console.log(numbers);
+
+/**
+ * Objects
+ */
+
+const Person: { firstname: string, age: 23, height: string } = {
+    firstname: "Joshua",
+    age: 23,
+    height: "163cm"
+}
+
+console.log(Person.firstname);

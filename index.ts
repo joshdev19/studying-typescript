@@ -83,6 +83,9 @@ printMessage("Hello World");
  */
 //  bracket notation
 const nums: number[] = [1,2,3,4,5];
+let numss: number[];
+numss = [1,2,3,4]
+console.log(numss)
 // Other notation
 const names: Array<string> = ["Joshua", "John Doe"];
 
@@ -102,6 +105,15 @@ const numbers: number[][] = [
 console.log(numbers);
 
 /**
+ * Union Types
+ * 
+ */
+let stringOrNumber: ( string | number )[];
+stringOrNumber = [ 1, 2, "Joshua, weiht"]
+console.log(stringOrNumber)
+
+
+/**
  * Objects
  */
 
@@ -110,5 +122,150 @@ const Person: { firstname: string, age: 23, height: string } = {
     age: 23,
     height: "163cm"
 }
-
 console.log(Person.firstname);
+
+//
+let Person2 : {
+    firstname: string;
+    lastname: string;
+}
+
+Person2 = {
+    firstname: "Joshua",
+    lastname: "Unilongo"
+};
+
+// Conditional with phone property
+let Person3: {
+    firstname: string;
+    lastname: string;
+    phone?: number | string;
+}
+
+// #1 without the phone property
+Person3 = {
+    firstname: "Joshua",
+    lastname: "unilongo"
+}
+// #2 with the phone property
+Person3 = {
+    firstname: "Joshua",
+    lastname: "unilongo",
+    phone: 9124121
+}
+
+/**
+ * Type Aliases
+ */
+
+type UserType = {
+    firstname: string;
+    lastname: string;
+    number: number | string
+}
+
+let betterFunction = ( user: UserType ) => {
+
+    console.log( user.firstname );
+
+}
+
+type myFunction = ( a:number, b:string ) => void
+let write : myFunction = ( num, str ) => console.log( num, str );
+write(1, "hello");
+
+type UserType2 = {
+    firstname: string;
+    lastname: string;
+    number?: number | string;
+    theme: "dark" | "light"
+}
+
+const userWithTheme : UserType2 = {
+    firstname: "Joshua",
+    lastname: "Unilongo",
+    number: 2131,
+    theme: "dark"
+    // theme: "pink" cannot use other than dark | light
+}
+
+/**
+ * INTERFACES
+ */
+interface IUser {
+    firstname: string;
+    lastname: string;
+    number?: number | string;
+    theme: "dark" | "light"
+}
+
+interface IEmployee extends IUser {
+    employeeId : number
+}
+
+const emp : IEmployee = {
+    firstname: "Joshua",
+    lastname: "Unilongo",
+    number: 123,
+    theme: "light",
+    employeeId: 123
+}
+console.log( emp );
+
+const client : IUser = {
+    firstname: "Joshua",
+    lastname: "Unilongo",
+    number: 123,
+    theme: "light"
+}
+console.log( client );
+
+/**
+ * GENERICS
+ */
+interface IAuthor {
+    id: number;
+    username: string;
+}
+
+interface ICategory {
+    id: number;
+    title: string;
+}
+
+interface IPost {
+    id: number;
+    title: string;
+    desc: string;
+    extra: IAuthor[] | ICategory[]; 
+}
+
+interface IPostBetter<T> {
+    id: number;
+    title: string;
+    desc: string;
+    extra: T[];
+}
+
+const testMe: IPostBetter<String> = {
+    id: 1,
+    title: "test",
+    desc: "123",
+    extra: [ "Joshua", "testing" ]
+}
+
+interface IPostEvenBetter<T extends object> {
+    id: number;
+    title: string;
+    desc: string;
+    extra: T[];
+}
+
+const testMe2: IPostEvenBetter<ICategory> = {
+    id: 1,
+    title: "test",
+    desc: "123",
+    extra: [ { id: 12, title: "123" } ]
+}
+
+console.log(testMe);
